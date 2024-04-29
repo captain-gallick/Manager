@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="UTF-8">
+      <link rel="stylesheet" type="text/css" href="../styles/home.css">
+      <link rel="stylesheet" type="text/css" href="../styles/general.css">
+      <link rel="stylesheet" type="text/css" href="../styles/subpages.css">
+      <title>Personal Manager</title>
+    </head>
+    <body onload="dateTime()">
+
+      <div class="general-menu-div">
+        <ul id="home-menu" class="general-menu">
+            <li onclick="backClick()">BACK</li>
+            <li onclick="exitFromApp()">EXIT</li>
+        </ul>
+      </div>
+
+      <div id="home-header">
+        <div id="MyDateDisplay" class="clock"></div>
+        <div id="MyClockDisplay" class="clock"></div>
+      </div>
+
+      <hr>
+
+      <h1 class="sale-heading">Sale List</h1>
+
+      <div id="top-box">
+
+      </div>
+
+      <div class="modal-sales" id="sale-modal">
+          <div class="modal-content-sales">
+              <div style="width: 100%; margin: auto; max-height: 500px; overflow: auto;">
+                  <table id="sale-report">
+
+                    <tr><td colspan="2" id="sale-edit-bname">Buyer Name</td></tr>
+                    <tr><td colspan="2" id="sale-edit-aname">Article Name</td></tr>
+                    <tr><td>Quantity</td>
+                        <td><input type="number" placeholder="Enter Quantity" 
+                                    id="sale-edit-qty" min="1" required onkeyup="calculateAmount()"></td>
+                    </tr>
+                    <tr><td>Sale Amount</td><td id="sale-edit-amount">Amount</td></tr>
+                    <tr><td>Sale Date</td>
+                        <td><input type="date" id="sale-edit-date" class="set-today"></td>
+                    </tr>
+                    <tr><td><input type="button" value="Delete" class="delete-btn" onclick="deleteSale()">
+                        </td><td><input type="button" value="Save Edit" id="delete-btn" onclick="updateSale()" class="input-button"></td> 
+                    </tr>
+      
+                  </table>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript" src="../script/sale.js"></script>
+
+    </body>
+  </html>

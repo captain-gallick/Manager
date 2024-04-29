@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="UTF-8">
+      <link rel="stylesheet" type="text/css" href="../styles/home.css">
+      <link rel="stylesheet" type="text/css" href="../styles/general.css">
+      <link rel="stylesheet" type="text/css" href="../styles/subpages.css">
+      <title>Personal Manager</title>
+    </head>
+    <body onload="initialLoad()">
+
+      <div class="general-menu-div">
+        <ul id="home-menu" class="general-menu">
+            <li onclick="backClick()">BACK</li>
+        </ul>
+      </div>
+
+      <h1 class="sale-heading" id="bill-heading"></h1>
+
+      <input type="button" value="Show Previous Month Sales" onclick="getPrevNextDate(2)">
+      <input type="button" id="next-month" value="Show Next Month Sales" onclick="getPrevNextDate(1)">
+
+      <table id="sale-report" border="1">
+    
+      </table>
+
+      <script type="text/javascript" src="../script/buyer_sales.js"></script>
+
+    </body>
+  </html>

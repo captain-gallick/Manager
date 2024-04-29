@@ -1,0 +1,56 @@
+/* body{
+    background: url("../assets/images/home-background.jpg");
+} */
+
+#top-box{
+    width: 98%;
+    margin: auto;
+    background: white;
+    max-height: 70vh;
+    overflow: auto;
+}
+
+#inner-box{
+    width: 100%;
+    margin: auto;
+    /* background: rgba(255, 255, 255, 0.8); */
+}
+
+td{
+    text-align: center;
+}
+
+#edit-sale:hover{
+    background-color: grey;
+    cursor: pointer;
+    color: white;
+}
+
+#table-heading{
+    background-color: #3dc7a5;
+}
+
+.sale-heading{
+    text-align: center;
+    margin: 5px;
+}
+
+@media print {
+    body {
+      visibility: hidden;
+    }
+    #sale-report {
+      visibility: visible;
+    }
+    #sale-report {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  thead th {
+    position: sticky;
+    top: 37px;
+    background-color: #3dc7a5;
+  }

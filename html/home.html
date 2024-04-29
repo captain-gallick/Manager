@@ -1,0 +1,327 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../styles/general.css">
+        <link rel="stylesheet" type="text/css" href="../styles/home.css">
+        <link rel="stylesheet" type="text/css" href="../styles/subpages.css">
+    </head>
+    <body onload="dateTime()">
+
+        <div class="general-menu-div">
+            <ul id="home-menu" class="general-menu">
+                <!-- <li id="import-database">Import Database</li>
+                <li id="import-database">Export Database</li> -->
+                <li onclick="exitFromApp()">EXIT</li>
+            </ul>
+
+        </div>
+
+        <div id="home-header">
+            <div id="MyDateDisplay" class="clock"></div>
+            <div id="MyClockDisplay" class="clock"></div>
+        </div>
+
+        <hr>
+
+        <section>
+            <nav>
+                <ul>
+                    <li id="home-sales" onclick="hidefunction(2)">Sales</li>
+                    <li id="home-inventory" onclick="hidefunction(1)">Inventory</li>
+                    <li id="home-buyers" onclick="hidefunction(3)">Buyers</li>
+                    <li id="home-reports" onclick="hidefunction(4)">Reports</li>
+                    <li id="home-all-sales" onclick="gotoList(1)">All Sales</li>
+                </ul>
+            </nav>
+            
+            <div id="article">
+                <div id="sales-block" class="home-blocks">
+                    <h1 class="form-heading">ADD SALE</h1>
+                    <div class="home-form-top" >
+                        <div style="margin: auto; padding: 20px; width: 100%;">
+
+                            <table style="border-right: solid 2px black; display: inline-block;">
+
+                                <!-- select buyer dropdown -->
+                                <tr>
+                                        <td><label for="select-buyer"><b>Select Buyer:</b></label></td>
+                                        <td><div id="buyer-dropdown"></div></td>
+                                    </tr>
+
+                                <!-- select article dropdown -->
+                                <tr>
+                                    <td><label for="select-article"><b>Select Article:</b></label></td>
+                                    <td><div id="article-dropdown"></div></td>
+                                </tr>
+
+                                <!-- quantity input box -->
+                                <tr>
+                                    <td><label for="article-quantity"><b>Enter Quantity:</b></label></td>
+                                    <td><input type="number" placeholder="Enter Quantity" 
+                                        id="article-quantity" min="1" required></td>
+                                </tr>
+
+
+                                <!-- select date input -->
+                                <tr>
+                                    <td><label><b>Select Date:</b></label></td>
+                                    <td><input type="date" id="sale-date"></td>
+                                </tr>
+
+                                <!-- total price lable -->
+                                <tr>
+                                    <td><input type="button" onclick="calculateTotal()" value="Calculate"
+                                        class="input-button"></td>
+                                    <td><label><b>Total:</b></label>
+                                        <p id="totalPrice" style="display: inline;"></p></td>
+                                </tr>
+
+                                <!-- Save sale button -->
+                                <tr>
+                                    <td align="center"><input type="button" onclick="saveSale()" value="Save Sale"
+                                        class="input-button"></td>
+                                    <td align="center"><input type="button" onclick="addToCart()" value="Add to Cart"
+                                        class="input-button"></td>
+                                </tr>
+
+                            </table>     
+                        
+                            <div id="sale-cart" style="vertical-align:top; display: inline-block; max-height: 300px;width: 50%; padding: 5px;  overflow: auto;">
+                                
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div id="inventory-block" class="home-blocks">
+                    <h1 class="form-heading">ADD NEW ARTICLE</h1>
+                    <div class="home-form-top">
+                        <div class="home-form" style="margin: auto; padding: 20px; width: 100%;">
+
+                            <table style="border-right: solid 2px black; display: inline-block;">
+
+                            <!-- article name input box -->
+                        
+                            <tr>
+                                <td><label><b>Article Name:</b></label></td>
+                                <td><input type="text" placeholder="Enter Article Name" 
+                                id="article-name" required></td>
+                            </tr>
+
+                            <!-- article base price input box -->
+                            <tr>
+                                <td><label><b>Article Price:</b></label></td>
+                                <td><input type="number" placeholder="Enter Article Price"
+                                id="article-price" step="any" required></td>
+                            </tr>        
+                            
+                            <!-- Save Article Button -->
+                            <tr>
+                                <td colspan="2" align="center"><input type="button" onclick="saveArticle()" value="Save Article"
+                                    class="input-button"></td>
+                            </tr>    
+
+                            </table>
+
+                            <div id="inventory-list" style="vertical-align:top; display: inline-block; max-height: 300px;width: 50%; padding: 5px;  overflow: auto;">
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="buyers-block" class="home-blocks">
+                        <h1 class="form-heading">ADD NEW BUYER</h1>
+                        <div class="home-form-top">
+                            <div style="width: 50%; margin: auto;">
+    
+                                <table>
+
+                                    <!-- buyer name input box -->
+                                    <tr>
+                                        <td><label><b>Buyer Name:</b></label></td>
+                                        <td><input type="text" placeholder="Enter Buyer Name" 
+                                        id="buyer-name" required></td>
+                                        <!-- Save Article Button -->
+                                        <td><input type="button" onclick="saveBuyer()" value="Save Buyer"
+                                            class="input-button"></td>
+                                    </tr>   
+
+                                </table>
+
+                                </div>
+                            </div>
+
+                            <div class="home-form-top" style="margin-top: 20px;">
+                                <div style="width: 100%; margin: auto; max-height: 270px; overflow: auto;">
+
+                                    <table id="buyer-list" style="width: 100%; border: solid 2px black;">
+
+                                    </table>
+    
+                                    </div>
+                                </div>
+                </div>
+
+                <div id="reports-block" class="home-blocks">
+                    <h1 class="form-heading">Sale Reports</h1>
+                    <div class="home-form-top">
+                        <div style="width: 85%; margin: auto;">                            
+
+                            <table class="report-tables">
+                                <tr>
+                                    <th colspan="2" align="center">Sale By Buyer</th>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" align="center">Select a Buyer</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" align="center"><div id="buyer-dropdown2"></div></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" align="center">
+                                        <ul>
+                                            <!-- <li class="report-list" onclick="fireReportModal(1)">This Month Sales</li>
+                                            <li class="report-list" onclick="fireReportModal(2)">Last Month Sales</li> --> 
+                                            <li class="report-list" onclick="fireReportModal(4)">All Sales</li>
+                                            <li class="report-list" onclick="gotoList(4)">Sales By Articles</li>
+                                            <li class="report-list" onclick="gotoList(3)">Sales By Buyer</li> 
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- total sale block -->
+                            <!-- <table class="report-tables"">
+                                <tr>
+                                    <th colspan="2">Total Sale</th>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" align="center">
+                                        <ul>
+                                            <li class="report-list">This Month Sales</li>
+                                            <li class="report-list">Last Month Sales</li>
+                                            <li class="report-list">This Week Sales</li>
+                                            <li class="report-list">All Sales</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </table> -->
+
+                            <!-- sale by article -->
+                            <!-- <table class="report-tables"">
+                                <tr>
+                                    <th colspan="2">Sale By Buyer</th>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Select an Item</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" align="center"><div id="article-dropdown2"></div></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" align="center">
+                                        <ul>
+                                            <li class="report-list">This Month Sales</li>
+                                            <li class="report-list">Last Month Sales</li>
+                                            <li class="report-list">This Week Sales</li>
+                                            <li class="report-list">All Sales</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </table> -->
+                            
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Trigger/Open The Modal -->
+<!-- <button id="myBtn">Open Modal</button> -->
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <!-- Modal content -->
+<div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 id="modal-heading" align="center">Modal Header</h2>
+    </div>
+    <div class="modal-body">
+      <table style="margin: auto;">
+        <tr>
+            <td><input type="button" value="Delete" class="delete-btn" onclick="deleteBuyer()"></td>
+            <td colspan="2"><input type="text" id="buyer-edit-bname" required placeholder="Buyer Name"></td>
+            <td><input type="button" value="Save Edit" onclick="updateBuyer()" class="input-button"></td>
+          <tr>
+                <td>
+                    Set Special Price:
+                </td>
+                <td>
+                    <div id="article-dropdown-modal"></div>
+                </td>
+                <td>
+                    <input type="number" step="any" placeholder="Enter Special Price"
+                        id="article-price-modal" required>
+                </td>
+                <td>
+                    <input type="button" onclick="saveSpecialPrice()" value="Save Special Price"
+                        class="input-button">
+                </td>
+          </tr>
+      </table>
+      <hr>
+      <h3 align="center"  style="padding: 20px;">Special Price List</h3>
+      <div style="width: 100%; margin: auto; max-height: 200px; overflow: auto;">
+        <table id="special-price-list" style="width: 100%; border: solid 2px black;">
+            
+        </table>
+    </div>
+        </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="modal" id="report-modal">
+    <div class="modal-content2">
+        <div style="width: 100%; margin: auto; max-height: 650px; overflow: auto;">
+            <table id="sale-report" border="1">
+
+            </table>
+            <input type="button" value="Print" onclick="printReport()">
+        </div>
+    </div>
+</div>
+
+<div class="modal-inventory" id="inventory-modal">
+    <div class="modal-content-inventory">
+        <div style="width: 100%; margin: auto; max-height: 650px; overflow: auto;">
+            <table id="inventory-edit">
+
+                <tr><td colspan="3">Edit Article</td></tr>
+                <tr><td>Name</td>
+                    <td><input type="text" id="inv-edit-aname"></td>
+                </tr>
+                <tr><td>Price</td>
+                    <td><input type="number" step="any" id="inv-edit-price" min="1" required placeholder="Article Price"></td>
+                </tr>
+                <tr><td><input type="button" value="Delete" class="delete-btn" onclick="deleteArticle()">
+                    </td><td><input type="button" value="Save Edit" id="delete-btn" onclick="updateArticle()" class="input-button"></td> 
+                </td><td><input type="button" value="Cancel" onclick="invOut()" class="input-button"></td> 
+                </tr>
+            
+            </table>
+        </div>
+    </div>
+</div>
+        
+        <script src="../script/home.js"></script>
+    </body>
+</html>
